@@ -167,7 +167,13 @@ function MaxValue(board) {
 
   let action;
   for (action of actions(board))
+  {
     v = Math.max(v, MinValue(result(board, action)));
+    alpha= Math.max(alpha, v);
+    if (beta <= alpha)
+      break;
+  }
+
   return v;
 }
 
@@ -181,15 +187,25 @@ function MinValue(board) {
   let v = 737427379378478374;
   let action;
   for (action of actions(board))
-    v = Math.min(v, MaxValue(result(board, action)));
+  {
+    v = Math.max(v, MinValue(result(board, action)));
+    beta = Math.min(beta, v);
+    if (beta <= alpha)
+      break;
+  }
+
+
   return v;
 }
-
+var alpha = -737427379378478374;
+var beta = 737427379378478374;
 
 function minimax(board) {
 
   let maximum = -9876544282792;
   let minimum = 987736356373;
+
+
   if (board === initial_state())
   {
     return [0, 0];
