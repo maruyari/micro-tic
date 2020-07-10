@@ -210,6 +210,7 @@ var player_is_x= true;
 
         function win(winner) {
             player_is_x=!player_is_x;
+            board=initial_state();
             function winAction(row, text) {
                 row.forEach(function (col) {
                     blink(col);
@@ -254,6 +255,7 @@ var player_is_x= true;
 
         function tie() {
           player_is_x = !player_is_x;
+          board=initial_state();
             action('tie');
             scores.ties++;
             updateScores();
@@ -451,10 +453,10 @@ var player_is_x= true;
                 let action;
                 let minval;
                 for (action of actions(board)) {
-                    console.log("actions", actions(board));
+                    //onsole.log("actions", actions(board));
                     console.log("resulting board", result(board, action));
                     minval = MinValue(result(board, action));
-                    console.log("minival=",minval);
+                    //console.log("minival=",minval);
                     if (minval > maximum) {
                         finalaction = action;
                         maximum = minval;
@@ -466,11 +468,11 @@ var player_is_x= true;
                 let action;
                 let maxval;
                 for (action of actions(board)) {
-                    console.log("actions=0", actions(board));
+                    //console.log("actions=0", actions(board));
 
                     console.log("resulting board", result(board, action), action);
                     maxval = MaxValue(result(board, action));
-                  console.log("maxival=",maxval);
+                  //console.log("maxival=",maxval);
                     if (maxval < minimum) {
                         finalaction = action;
                         minimum = maxval;
@@ -508,8 +510,14 @@ var player_is_x= true;
             console.log(board);
             let action = minimax(board);
             console.log(action);
+            console.log("eee",board);
             let i,j;
             if(action===null)
+            {
+              i=0;
+              j=0;
+            }
+            else if(board===initial_state())
             {
               i=0;
               j=0;
