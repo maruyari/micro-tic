@@ -17,22 +17,28 @@
 
         <div class="cover"></div>
 
-        <div class="pick">
+        <div class="loader"></div>
+
+        <div class="pick" style="display: none;">
             <h2 class="msg">Pick</h2>
             <button class="x"></button>
             <button class="o"></button>
         </div> <!-- end-pick -->
-        <div class="creater">
-            <h2 class="msg">Create or Join</h2>
-            <button class="x">Create</button>
-            <button class="o">Join</button>
-        </div> <!-- end-pick -->
-        <div class="join">
-            <h2 class="msg">Join</h2>
-            <input type="number" >
+        <div class="creater" style="display: none;">
+            <h2 class="msg">Game setup</h2>
+            <button class="create_room">Create Room</button>
+            <button class="join_room">Join Game</button>
+        </div>
+        <div class="waiting" style="display: none;">
+            <h2 class="title">Room Code: </h2>
+            <h1 class="msg"></h1>
+        </div>
+        <div class="join" style="display: none;">
+            <h2 class="msg">Join Game</h2>
+            <input placeholder="Room Code" type="number" class="room_code">
             <button class="join_button">Join</button>
 
-        </div> <!-- end-pick -->
+        </div>
         <div class="end">
             <h2 class="msg"></h2>
             <button class="replay"><i class="fa fa-refresh"></i></button>
@@ -75,7 +81,7 @@
                     <u>0</u>
                 </div>
                 <div class="col com">
-                    <h2>Computer - <span class="char">O</span></h2>
+                    <h2>Opponent - <span class="char">O</span></h2>
                     <u>0</u>
                 </div>
             </div>

@@ -179,9 +179,33 @@ u {
   background-color: #537780;
   opacity: 0.8;
 }
+.dialogs .loader {
+  position: fixed;
+  left: 47%;
+  top: 39%;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #11d4bd;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 .dialogs .pick,
 .dialogs .creater,
 .dialogs .join,
+.dialogs .waiting,
 .dialogs .end {
   position: relative;
   top: 50%;
@@ -192,9 +216,29 @@ u {
   transform: translateY(-50%);
   padding: 0.9375rem 0;
 }
+.dialogs .waiting .title {
+  color: #FFFCCA
+}
+
+.dialogs .join input[type=number], select {
+  /*width: 100%;*/
+  padding: 12px 20px;
+  margin: 8px 15px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  -moz-appearance: textfield;
+}
+.dialogs .join input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .dialogs .pick .msg,
 .dialogs .creater .msg,
 .dialogs .join .msg,
+.dialogs .waiting .msg,
 .dialogs .end .msg {
   margin-top: 0;
   margin-bottom: 24px;
@@ -205,6 +249,7 @@ u {
   .dialogs .pick .msg,
   .dialogs .creater .msg,
   .dialogs .join .msg,
+  .dialogs .waiting .msg,
   .dialogs .end .msg {
     font-size: 2rem;
   }
@@ -213,6 +258,7 @@ u {
   .dialogs .pick .msg,
   .dialogs .creater .msg,
   .dialogs .join .msg,
+  .dialogs .waiting .msg,
   .dialogs .end .msg {
     font-size: 2rem;
   }
@@ -233,6 +279,17 @@ u {
   height: 10rem;
   width: 10rem;
   margin-right: 0.3125rem;
+}
+.dialogs .creater button,
+.dialogs .join button {
+  font-size: 2rem;
+}
+.dialogs .join button {
+  top: 3px;
+  height: 3rem;
+  width: 7rem;
+  border-radius: 4px;
+  font-size: 1.5rem;
 }
 .dialogs .creater button:last-child,
 .dialogs .join button:last-child,
