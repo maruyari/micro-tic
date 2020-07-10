@@ -180,6 +180,8 @@ u {
   opacity: 0.8;
 }
 .dialogs .pick,
+.dialogs .creater,
+.dialogs .join,
 .dialogs .end {
   position: relative;
   top: 50%;
@@ -191,6 +193,8 @@ u {
   padding: 0.9375rem 0;
 }
 .dialogs .pick .msg,
+.dialogs .creater .msg,
+.dialogs .join .msg,
 .dialogs .end .msg {
   margin-top: 0;
   margin-bottom: 24px;
@@ -199,17 +203,23 @@ u {
 }
 @media screen and (max-width: 520px) {
   .dialogs .pick .msg,
+  .dialogs .creater .msg,
+  .dialogs .join .msg,
   .dialogs .end .msg {
     font-size: 2rem;
   }
 }
 @media screen and (max-height: 620px) {
   .dialogs .pick .msg,
+  .dialogs .creater .msg,
+  .dialogs .join .msg,
   .dialogs .end .msg {
     font-size: 2rem;
   }
 }
 .dialogs .pick button,
+.dialogs .creater button,
+.dialogs .join button,
 .dialogs .end button {
   position: relative;
   border: none;
@@ -224,20 +234,28 @@ u {
   width: 10rem;
   margin-right: 0.3125rem;
 }
+.dialogs .creater button:last-child,
+.dialogs .join button:last-child,
 .dialogs .pick button:last-child,
 .dialogs .end button:last-child {
   margin-right: 0;
 }
-.dialogs .pick button:hover,
+.dialogs .creater button:hover,
+.dialogs .join button:hover,
+.dialogs .pick button:hover ,
 .dialogs .end button:hover {
   background-color: #0fbea9;
 }
+.dialogs .creater button:active,
+.dialogs .join button:active,
 .dialogs .pick button:active,
 .dialogs .end button:active {
   background-color: #537780;
 }
 @media screen and (max-width: 520px) {
   .dialogs .pick button,
+  .dialogs .creater button,
+  .dialogs .join button,
   .dialogs .end button {
     height: 6.25rem;
     width: 6.25rem;
@@ -246,12 +264,17 @@ u {
 }
 @media screen and (max-height: 620px) {
   .dialogs .pick button,
+  .dialogs .creater button,
+  .dialogs .join button,
+
   .dialogs .end button {
     height: 6.25rem;
     width: 6.25rem;
     font-size: 4rem;
   }
 }
+.dialogs .creater button.o:after,
+.dialogs .join button.o:after,
 .dialogs .pick button.o:after,
 .dialogs .end button.o:after {
   content: "";
@@ -273,6 +296,8 @@ u {
   animation: o 0.25s;
 }
 @media screen and (max-width: 520px) {
+  .dialogs .creater button.o:after,
+  .dialogs join button.o:after,
   .dialogs .pick button.o:after,
   .dialogs .end button.o:after {
     border-width: 0.625rem;
@@ -280,10 +305,14 @@ u {
 }
 @media screen and (max-height: 620px) {
   .dialogs .pick button.o:after,
+  .dialogs .creater button.o:after,
+  .dialogs .join button.o:after,
   .dialogs .end button.o:after {
     border-width: 0.625rem;
   }
 }
+.dialogs .creater button.x:before,
+.dialogs .join button.x:before,
 .dialogs .pick button.x:before,
 .dialogs .end button.x:before {
   content: "";
@@ -302,6 +331,8 @@ u {
   -moz-animation: x 0.25s;
   animation: x 0.25s;
 }
+.dialogs .creater button.x:after,
+.dialogs .join button.x:after,
 .dialogs .pick button.x:after,
 .dialogs .end button.x:after {
   content: "";

@@ -10,248 +10,6 @@ function initial_state() {
 }
 
 
-function play(board) {
-    let count = 0;
-    let length = 3;
-    for (let i = 0; i < length; i++) {
-        for (let j = 0; j < length; j++) {
-            if (board[i][j] === 'x' || board[i][j] === 'o') {
-                count = count + 1;
-            }
-        }
-
-    }
-    if (player_is_x) {
-        if (count === 9) {
-            return "over";
-        }
-
-        if (count % 2 === 0) {
-            return 'x';
-
-        } else {
-            return 'o';
-        }
-    } else {
-        if (count === 9) {
-            return "over";
-        }
-
-        if (count % 2 === 0) {
-            return 'o';
-
-        } else {
-            return 'x';
-        }
-    }
-
-
-}
-
-
-function actions(board) {
-    let action = [];
-    let length = 3;
-    for (let i = 0; i < length; i++) {
-        for (let j = 0; j < length; j++) {
-            if (board[i][j] === EMPTY)
-                action.push([i, j]);
-        }
-    }
-
-
-    return action
-}
-
-function checkAction(board, action) {
-    let allactions = actions(board);
-    let x;
-    for (x of allactions) {
-        if (x[0] === action[0] && x[1] === action[1]) {
-            return true;
-        }
-    }
-    return false;
-
-}
-
-function result(board, action) {
-
-    if (terminal(board)) {
-        return "Game over.";
-    } else if (!checkAction(board, action)) {
-        return "Invalid action.";
-    } else {
-        let ResultingBoard = _.cloneDeep(board);
-        if (play(board) === 'x') {
-            ResultingBoard[action[0]][action[1]] = 'x';
-        } else
-            ResultingBoard[action[0]][action[1]] = 'o';
-        return ResultingBoard;
-    }
-
-
-}
-
-
-function winner(board) {
-    if ((board[0][0] === 'x' && board[1][1] === 'x' && board[2][2] === 'x') || (
-        board[0][2] === 'x' && board[1][1] === 'x' && board[2][0] === 'x') || (
-        board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'x') || (
-        board[1][0] === 'x' && board[1][1] === 'x' && board[1][2] === 'x') || (
-        board[2][0] === 'x' && board[2][1] === 'x' && board[2][2] === 'x') || (
-        board[0][0] === 'x' && board[1][0] === 'x' && board[2][0] === 'x') || (
-        board[0][1] === 'x' && board[1][1] === 'x' && board[2][1] === 'x') || (
-        board[0][2] === 'x' && board[1][2] === 'x' && board[2][2] === 'x')) {
-        return 'x';
-    } else if ((board[0][0] === 'o' && board[1][1] === 'o' && board[2][2] === 'o') || (
-        board[0][2] === 'o' && board[1][1] === 'o' && board[2][0] === 'o') || (
-        board[0][0] === 'o' && board[0][1] === 'o' && board[0][2] === 'o') || (
-        board[1][0] === 'o' && board[1][1] === 'o' && board[1][2] === 'o') || (
-        board[2][0] === 'o' && board[2][1] === 'o' && board[2][2] === 'o') || (
-        board[0][0] === 'o' && board[1][0] === 'o' && board[2][0] === 'o') || (
-        board[0][1] === 'o' && board[1][1] === 'o' && board[2][1] === 'o') || (
-        board[0][2] === 'o' && board[1][2] === 'o' && board[2][2] === 'o')) {
-        return 'o';
-    } else {
-        return null;
-    }
-
-}
-
-
-function terminal(board) {
-    if (winner(board) != null)
-        return true;
-    for (let i = 0; i < 3; i++)
-        for (let j = 0; j < 3; j++)
-            if (board[i][j] === EMPTY)
-                return false;
-    return true;
-}
-
-
-function utility(board) {
-    if (winner(board) === 'x') {
-        return 1;
-    }
-
-    if (winner(board) === 'o') {
-        return -1;
-    } else {
-        return 0;
-    }
-
-
-}
-
-
-
-/**
- * @return {number}
- */
-function MaxValue(board, alpha, beta) {
-    //console.log("max");
-    if (terminal(board)) {
-        return utility(board);
-    }
-    let v = -737427379378478374;
-
-    let action;
-    for (action of actions(board)) {
-        v = Math.max(v, MinValue(result(board, action), alpha, beta));
-        alpha = Math.max(alpha, v);
-        if (alpha >= beta) {
-            break;
-        }
-
-    }
-    // v = Math.max(v, MinValue(result(board, action),alpha,beta));
-    return v;
-}
-
-
-/**
- * @return {number}
- */
-function MinValue(board, alpha, beta) {
-    //console.log("min");
-    if (terminal(board))
-        return utility(board);
-    let v = 737427379378478374;
-    let action;
-    for (action of actions(board)) {
-        v = Math.min(v, MaxValue(result(board, action), alpha, beta));
-        beta = Math.min(v, beta);
-        if (alpha >= beta) {
-            break;
-        }
-
-    }
-    //v = Math.min(v, MaxValue(result(board, action),alpha,beta));
-    return v;
-}
-function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min) ) + min;
-}
-
-
-function minimax(board) {
-    console.log("minimax is getting",board);
-    let maximum = -9876544282792;
-    let minimum = 987736356373;
-    let alpha = -2837643415347874;
-    let beta = 46876435468435467;
-    if (board === initial_state()) {
-        let all_actions=actions(board);
-        let size=all_actions.length;
-        let choose=getRndInteger(0,size);
-        // return all_actions(choose);
-        return [1,1];
-    }
-
-    let finalaction = null;
-    if (play(board) === 'x') {
-        let action;
-        let minval;
-        for (action of actions(board)) {
-            //onsole.log("actions", actions(board));
-            console.log("resulting board", result(board, action));
-            minval = MinValue(result(board, action), alpha, beta);
-            //console.log("minival=",minval);
-            if (minval > maximum) {
-                finalaction = action;
-                maximum = minval;
-            }
-        }
-
-        return finalaction;
-    }
-    else if (play(board) === 'o') {
-        let action;
-        let maxval;
-        if(board===initial_state())
-        {
-            return [1,1];
-        }
-        for (action of actions(board)) {
-            //console.log("actions=0", actions(board));
-
-            console.log("resulting board", result(board, action), action);
-            maxval = MaxValue(result(board, action), alpha, beta);
-            //console.log("maxival=",maxval);
-            if (maxval < minimum) {
-                finalaction = action;
-                minimum = maxval;
-            }
-        }
-
-        return finalaction;
-    }
-
-
-}
-
 
 (function () {
 
@@ -284,10 +42,10 @@ function minimax(board) {
                 [cols[0][0], cols[1][1], cols[2][2]],
                 [cols[0][2], cols[1][1], cols[2][0]] // Diago
             ],
-            chars = {p: 'x', com: 'o'},
-            scores = {p: 0, ties: 0, com: 0},
-            turn = 'p',
-            isComputer = false;
+            chars = {self: 'x', opponent: 'o'},
+            scores = {self: 0, ties: 0, opponent: 0},
+            turn = "self",
+            isOpponent = false;
 
 
         /*
@@ -297,9 +55,9 @@ function minimax(board) {
         */
         function updateScores() {
 
-            $scores.find('.p').find('u').html(scores.p);
+            $scores.find('.p').find('u').html(scores.self);
             $scores.find('.ties').find('u').html(scores.ties);
-            $scores.find('.com').find('u').html(scores.com);
+            $scores.find('.com').find('u').html(scores.opponent);
 
         } // end-updateScores
 
@@ -356,10 +114,10 @@ function minimax(board) {
         */
         function switchTurn() {
 
-            if (turn === 'p') {
-                turn = 'com';
+            if (turn === "self") {
+                turn = "opponent";
             } else {
-                turn = 'p';
+                turn = "self";
             }
 
         } // end-switchTurn
@@ -406,8 +164,8 @@ function minimax(board) {
             if (action === 'replay') {
                 dialogs('out', 'pick');
                 switchTurn();
-                if (turn === 'com') {
-                    setTimeout(computer, 25);
+                if (turn === "opponent") {
+                    setTimeout(opponent, 25);
                 }
             } else if (action === 'win') {
                 dialogs('in', 'pick');
@@ -439,8 +197,8 @@ function minimax(board) {
 
             } // end-getRow
 
-            var p = getRow(chars.p),
-                com = getRow(chars.com);
+            var p = getRow(chars.self),
+                com = getRow(chars.opponent);
 
             if (p) {
                 return {
@@ -471,11 +229,11 @@ function minimax(board) {
 
             if (winner.name === 'p') {
                 winAction(winner.row, 'You win!!');
-                scores.p++;
+                scores.self++;
                 updateScores();
             } else if (winner.name === 'com') {
                 winAction(winner.row, 'Computer wins!');
-                scores.com++;
+                scores.opponent++;
                 updateScores();
             }
 
@@ -519,70 +277,15 @@ function minimax(board) {
           Computer Function.
         ============================================
         */
-        function computer() {
+        function opponent() {
 
-            let winner;
-            if (checkWinner()) {
-                isComputer = false;
-                winner = checkWinner();
-                win(winner);
-                return;
-            } else if (checkTie()) {
-                isComputer = false;
-                tie();
-                return;
-            }
-
-            isComputer = true;
-            console.log(cols);
-            console.log(board_curr);
-            console.log("actions=",actions(board_curr));
-            let action = minimax(board_curr);
-            console.log("action=",action);
-            console.log("board",board_curr);
-            let i, j;
-            // if (action === null) {
-            //     i = 0;
-            //     j = 0;
-            // }
-            // else
-            {
-                i = action[0];
-                j = action[1];
-            }
-
-            board_curr[i][j] = chars.com;
-            console.log("board after change",board_curr);
-            appendChar(cols[i][j], chars.com); //give the move in form of col[i][j]
-
-            isComputer = false;
-
-            if (checkWinner()) {
-                winner = checkWinner();
-                win(winner);
-
-            } else if (checkTie()) {
-                tie();
-
-            }
-
-        } // end-computer
-
-
-        /*
-        ============================================
-          Player Function.
-        ============================================
-        */
-        function player(target) {
-
-            if (isComputer || !target.hasClass('col') || target.children('u').length) {
+            if (isOpponent || !target.hasClass('col') || target.children('u').length) {
                 return;
             }
 
             var coords = getCoords(target);
-            board_curr[coords.row][coords.col] = chars.p;
-            appendChar(cols[coords.row][coords.col], chars.p);
+            board_curr[coords.row][coords.col] = chars.opponent;
+            appendChar(cols[coords.row][coords.col], chars.opponent);
 
             if (checkWinner()) {
                 var winner = checkWinner();
@@ -593,10 +296,40 @@ function minimax(board) {
                 return;
             }
 
-            isComputer = true;
-            setTimeout(computer, 25);
+            isOpponent = true;
+            setTimeout(opponent, 25);
 
-        } // end-player
+        } // end-opponent
+
+
+        /*
+        ============================================
+          Player Function.
+        ============================================
+        */
+        function self(target) {
+
+            if (isOpponent || !target.hasClass('col') || target.children('u').length) {
+                return;
+            }
+
+            var coords = getCoords(target);
+            board_curr[coords.row][coords.col] = chars.self;
+            appendChar(cols[coords.row][coords.col], chars.self);
+
+            if (checkWinner()) {
+                var winner = checkWinner();
+                win(winner);
+                return;
+            } else if (checkTie()) {
+                tie();
+                return;
+            }
+
+            isOpponent = true;
+            //setTimeout(opponent, 25);
+
+        } // end-self
 
         /*
         ============================================
@@ -607,7 +340,7 @@ function minimax(board) {
 
             var target = $(e.target);
 
-            player(target);
+            self(target);
 
         });
 
@@ -615,14 +348,14 @@ function minimax(board) {
 //come here
             var target = $(e.target);
             if (target.hasClass('x')) {
-                chars.p = 'x';
-                chars.com = 'o';
+                chars.self = 'x';
+                chars.opponent = 'o';
                 player_is_x = true;
                 $scores.find('.p').find('.char').html('X');
                 $scores.find('.com').find('.char').html('O');
             } else {
-                chars.p = 'o';
-                chars.com = 'x';
+                chars.self = 'o';
+                chars.opponent = 'x';
                 $scores.find('.p').find('.char').html('O');
                 $scores.find('.com').find('.char').html('X');
                 player_is_x = false;
@@ -638,14 +371,55 @@ function minimax(board) {
         });
 
     } // end-TicTacToe
-
+    function makeid(length) {
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
     $(document).ready(function () {
+
+        // Create a client instance
+        // var client = new Paho.MQTT.Client("test.mosquitto.org", 8080,makeid(10));
+        //
+        // // set callback handlers
+        // client.onConnectionLost = onConnectionLost;
+        // client.onMessageArrived = onMessageArrived;
+        //
+        // // connect the client
+        // client.connect({onSuccess:onConnect});
+        //
+        //
+        // // called when the client connects
+        // function onConnect() {
+        //     // Once a connection has been made, make a subscription and send a message.
+        //     console.log("onConnect");
+        //     client.subscribe("World");
+        //     var message = new Paho.MQTT.Message("Hello");
+        //     message.destinationName = "World";
+        //     client.send(message);
+        // }
+        //
+        // // called when the client loses its connection
+        // function onConnectionLost(responseObject) {
+        //     if (responseObject.errorCode !== 0) {
+        //         console.log("onConnectionLost:"+responseObject.errorMessage);
+        //     }
+        // }
+        //
+        // // called when a message arrives
+        // function onMessageArrived(message) {
+        //     console.log("onMessageArrived:"+message.payloadString);
+        // }
 
         // DOM
         let $game = $('.game'),
             $scores = $('.scores'),
             $dialogs = $('.dialogs');
-
+        debugger;
         let game = new TicTacToe({
 
             game: $game,
