@@ -28,9 +28,12 @@
     4. Base difficulty starts at 3.
  4. Alpha beta pruning incorporated - increases the decision making speed of the AI by 6 times
  
- ## Play against Friend \
- 1. Gives you option to create room and join room
- 2. Person who creates room has to start the game.
- 3. MQTT protocol is used for communication, using the public server http://test.mosquitto.org 
- 4. 
+ ## Play against Friend 
+ 1. Gives you option to create room and join room.
+ 2. Both you and your friend can choose the same symbol X or O in your page but response from the other side will always be complimentary.
+ 3. MQTT protocol is used for communication, using the public server test.mosquitto.org port 8083. 
+ 4. Destination name on server is <'maruyari_tictactoe/' + room > where room is room code
+ 5. MQTT is used because the payload that has to be broadcasted is very small and, its use is very efficient as it doesnt have the overhead of HTTP.
+ 6. Person who creates room has to start the game.
+ 
  
