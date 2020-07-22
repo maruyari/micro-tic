@@ -2,8 +2,8 @@
 ## Tic Tac toe game - Web application
  Hosted on http://maruyari.github.io
  
- __completely coded using client side scripting, does not require a API, or backend framework__
- __languages used:_HTML as a markup, Javascript (along with JQuery library), and CSS for styling_.__
+> __Completely coded using client side scripting, does not require a API, or backend framework__
+> __Languages used:_HTML as a markup, Javascript (along with JQuery library), and CSS for styling_.__
    
  
  ## Supports 2 modes of play
@@ -12,7 +12,7 @@
  _Both the options implemented using the same HTML, and javascript file_, thus decreasing size of total application.
  ## Features
  1. Keeps score of player and opponent as well as tie games
- 2. Has a spotify playlist widget on the right panel which is dynamic, i.e chnages and the player can choose to listen to music while playing(feature not available on mobile)
+ 2. Has a Spotify playlist widget on the right panel which is dynamic, i.e changes regualarly and the player can choose to listen to music while playing(feature not available on mobile)
  3. First move alternates between player and opponent.
  4. Player can choose X, O.
  # Description of each mode:
