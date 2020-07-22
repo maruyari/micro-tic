@@ -15,7 +15,7 @@
  ## Play against computer (play against AI)
  1. Here your opponent is the AI alogorithm which will play against you.
  2. the algorithm used is the minimax algorithm, optimised with alpha beta pruning.
- ![minimax-flow]https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FMinimax&psig=AOvVaw1lM8ym9fF0BYC_j1sK6xuL&ust=1595484215869000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMDZ3YaY4OoCFQAAAAAdAAAAABAD)
+ ![minimax-flow](https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FMinimax&psig=AOvVaw1lM8ym9fF0BYC_j1sK6xuL&ust=1595484215869000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMDZ3YaY4OoCFQAAAAAdAAAAABAD)
  3. difficulty is auto-adjusted. 
     1. adjusted using depth of minimax algorithm
     2. 
