@@ -5,14 +5,14 @@
 > - __Completely coded using client side scripting, does not require a API, or backend framework__
 > - __Languages used:_HTML as a markup, Javascript (along with JQuery library), and CSS for styling_.__
    
- 
+ __Warning: Refreshing web page will start a new game__
  ## Supports 2 modes of play
  1. Play against Computer -(one player)
  2. Play against friend online -(two player)
  _Both the options implemented using the same HTML, and javascript file_, thus decreasing size of total application.
  ## Features
- 1. Keeps score of player and opponent as well as tie games
- 2. Has a Spotify playlist widget on the right panel which is dynamic, i.e changes regualarly and the player can choose to listen to music while playing(feature not available on mobile)
+ 1. Keeps score of player and opponent as well as tie games.
+ 2. Has a Spotify playlist widget on the right panel which is dynamic, i.e changes regularly and the player can choose to listen to music while playing(feature not available on mobile)
  3. First move alternates between player and opponent.
  4. Player can choose X, O.
  # Description of each mode:
