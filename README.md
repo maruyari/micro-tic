@@ -20,7 +20,6 @@
  ## Play against computer (play against AI)
  1. Here your opponent is the AI alogorithm which will play against you.
  2. The algorithm used is the minimax algorithm, optimised with alpha beta pruning.
- ![minimax-flow](File:///home/tokoyama/Downloads/400px-Minimax.svg.png)
  3. difficulty is auto-adjusted. 
     1. Adjusted using depth of minimax algorithm
     2. Depth is increased if player wins, thus increasing difficulty
@@ -31,7 +30,7 @@
  ## Play against Friend 
  1. Gives you option to create room and join room.
  2. Both you and your friend can choose the same symbol X or O in your page but response from the other side will always be complimentary.
- 3. MQTT protocol is used for communication, using the public server test.mosquitto.org port 8083. 
+ 3. MQTT protocol is used for communication. 
  4. Destination name on server is `'maruyari_tictactoe/' + room ` where room is room code
  5. MQTT is used because the payload that has to be broadcasted is very small and, its use is very efficient as it doesnt have the overhead of HTTP.
  6. Person who creates room has to start the game.
